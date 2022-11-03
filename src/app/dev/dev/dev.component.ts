@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { Dev } from '../model/dev';
+import { Dev } from './../model/dev';
+import { DevService } from './../services/dev.service';
 
 @Component({
   selector: 'app-dev',
@@ -7,9 +12,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DevComponent implements OnInit {
 
-  constructor() { }
+  dev: Observable<Dev[]> = [];
+  displayedColumns = ['name','category'];
+
+  constructor(private devService: DevService ) {
+
+
+  }
 
   ngOnInit(): void {
+    this.dev = this.devService.list();
   }
 
 }
