@@ -20,6 +20,7 @@ import { AppComponent } from './app.component';
     MatToolbarModule,
     HttpClientModule,
     MatDialogModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
