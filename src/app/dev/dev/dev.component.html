@@ -15,8 +15,7 @@
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Nome </th>
         <td mat-cell *matCellDef="let dev"> {{dev.name}}
-          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
-
+          <mat-icon aria-hidden="false" aria-label="Nome do contribuinte" fontIcon="{{dev.name | name}}"></mat-icon>
         </td>
       </ng-container>
 

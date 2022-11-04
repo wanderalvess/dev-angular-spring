@@ -5,9 +5,6 @@ import { AppMaterialModule } from './app-material/app-material.module';
 import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
 import { NamePipe } from './pipes/name.pipe';
 
-
-
-
 @NgModule({
   declarations: [
     ErrorDialogComponent,
@@ -16,12 +13,10 @@ import { NamePipe } from './pipes/name.pipe';
   imports: [
     CommonModule,
     AppMaterialModule
-
   ],
   exports: [
     ErrorDialogComponent,
     NamePipe
   ]
-
 })
 export class SharedModule { }
