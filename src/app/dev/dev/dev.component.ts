@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { catchError, Observable, of } from 'rxjs';
 
-import { Dev } from '../model/dev';
+import { ErrorDialogComponent } from './../../shared/components/error-dialog/error-dialog.component';
 import { Dev } from './../model/dev';
 import { DevService } from './../services/dev.service';
+
 
 @Component({
   selector: 'app-dev',
@@ -12,16 +14,31 @@ import { DevService } from './../services/dev.service';
 })
 export class DevComponent implements OnInit {
 
-  dev: Observable<Dev[]> = [];
-  displayedColumns = ['name','category'];
+  dev$: Observable<Dev[]>;
+  displayedColumns = ['code', 'name', 'document'];
 
-  constructor(private devService: DevService ) {
+  constructor(
+    private devService: DevService,
+    public dialog: MatDialog
+  ) {
 
+    this.dev$ = this.devService.list()
+    .pipe(
+      catchError(error => {
+        this.onError('Erro ao carregar clientes.')
+        return of([])
+      })
+    );
+  }
 
+  onError(errorMsg: string) {
+    this.dialog.open(ErrorDialogComponent, {
+      data: errorMsg
+    });
   }
 
   ngOnInit(): void {
-    this.dev = this.devService.list();
+
   }
 
 }
