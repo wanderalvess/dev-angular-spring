@@ -1,5 +1,7 @@
 export interface Dev {
-  _id: string;
+
+  code: string;
   name: string;
-  category: string;
+  document: string;
+
 }

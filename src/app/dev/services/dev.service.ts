@@ -9,7 +9,7 @@ import { Dev } from '../model/dev';
 })
 export class DevService {
 
-  private readonly API = '/assets/dev.json';
+  private readonly API = 'api/clientes';
 
   constructor(private httpClient: HttpClient) { }
 
