@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, Observable, of } from 'rxjs';
 
 import { ErrorDialogComponent } from './../../shared/components/error-dialog/error-dialog.component';
@@ -15,11 +16,13 @@ import { DevService } from './../services/dev.service';
 export class DevComponent implements OnInit {
 
   dev$: Observable<Dev[]>;
-  displayedColumns = ['code', 'name', 'document'];
+  displayedColumns = ['code', 'name', 'document', 'actions'];
 
   constructor(
     private devService: DevService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
 
     this.dev$ = this.devService.list()
@@ -39,6 +42,10 @@ export class DevComponent implements OnInit {
 
   ngOnInit(): void {
 
+  }
+
+  onAdd() {
+    this.router.navigate(['new'], {relativeTo: this.route});
   }
 
 }
